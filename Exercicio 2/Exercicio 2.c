@@ -22,16 +22,17 @@ char *lerNome(){
     ponteiro = inicio + (i + 1);
     *ponteiro = '\0';
 
-    printf("Nome lido: %s\n", inicio);
+    printf("\nNome lido: %s", inicio);
 
     return inicio;
 }
 
-void gravarNome(char *string)
-{
+char *gravarNome(char *string){
+
     char *novoNome, *ponteiro;
     int tamNome, i;
 
+    printf("\nInforme o nome: ");
     novoNome = lerNome();
     tamNome = strlen(novoNome);
 
@@ -47,21 +48,72 @@ void gravarNome(char *string)
 
     free(novoNome);
 
-    printf("Todos nomes: %s", string);
+    return string;
+}
 
-    return;
+void listarNomes(char *string){
+
+    char *token, *aux;
+    const char caracDelim[2] = "-";
+    
+
+    aux = (char *)malloc(sizeof(char) * strlen(string) + 1);
+    strcpy(aux, string);
+
+    printf("String completa: %s", string);
+
+    printf("\nLISTA DE NOMES\n\n");
+
+    token = strtok(aux, caracDelim);
+
+    while (token != NULL)
+    {
+        printf("%s\n", token);
+        token = strtok(NULL, caracDelim);
+    }
+
+    free(aux);
+}
+
+int menu()
+{
+    int opcao;
+
+    while (opcao < 1 || opcao > 4){
+        printf("\n1- Adicionar nome\n2- Remover nome\n3- Listar\n4- Sair\n\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+        getchar();
+    }
+    return opcao;
 }
 
 int main(){
 
     char *stringNomes;
+    int opcao;
 
     stringNomes = (char *)malloc(sizeof(char));
     *stringNomes = '\0';
 
     for ( ; ; ){
-        gravarNome(stringNomes);
+        opcao = menu();
+
+        switch (opcao){
+        case 1:
+            stringNomes = gravarNome(stringNomes);
+            printf("\nTamanho string: %d\n", strlen(stringNomes));
+            break;
+        case 2:
+
+            break;
+        case 3:
+            listarNomes(stringNomes);
+            break;
+        case 4:
+            exit(0);
+            break;
+        default:
+            break;
+        }
     }
-    
-    free(stringNomes);
 }
