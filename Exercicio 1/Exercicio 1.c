@@ -3,10 +3,12 @@
 
 void Ola_Mundo(void)
 {
-    printf("Hello World!");
+    printf("Ola Mundo!");
 }
 
 int main()
 {
     Ola_Mundo();
+
+    return 0;
 }
