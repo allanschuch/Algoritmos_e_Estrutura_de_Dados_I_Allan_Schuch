@@ -29,25 +29,25 @@ char *lerNome(){
 
 void gravarNome(char *string)
 {
-    char *novo_nome, *ponteiro = string;
+    char *novoNome, *ponteiro;
+    int tamNome, i;
+
+    novoNome = lerNome();
+    tamNome = strlen(novoNome);
+
+    string = realloc(string, (sizeof(char) * (tamNome + strlen(string) + 2)));
+
+    ponteiro = string + strlen(string);
     
-    novo_nome = lerNome();
-    int tam_nome = strlen(novo_nome) + 1;
+    memcpy(ponteiro, novoNome, sizeof(char) * tamNome);
 
-    printf("Nome: %s\n", novo_nome);
-    printf("Strlen string: %d\n", strlen(string));
-
-    string = realloc(string, (sizeof(char) * (tam_nome + strlen(string))));
-
-    memcpy(ponteiro, novo_nome, tam_nome);
-    printf("Strlen string: %d\n", strlen(string));
-    
-    ponteiro = ponteiro + tam_nome;
-    *ponteiro = '@';
+    ponteiro = ponteiro + tamNome;
+    *ponteiro = '-';
     *(ponteiro + 1) = '\0';
-    printf("Strlen string: %d\n", strlen(string));
-    free(novo_nome);
-    printf("Nome: %s\n", string);
+
+    free(novoNome);
+
+    printf("Todos nomes: %s", string);
 
     return;
 }
@@ -58,10 +58,10 @@ int main(){
 
     stringNomes = (char *)malloc(sizeof(char));
     *stringNomes = '\0';
+
+    for ( ; ; ){
+        gravarNome(stringNomes);
+    }
     
-    // gravarNome(stringNomes);
-
-    // printf("Todos nomes: %s", stringNomes);
-
     free(stringNomes);
 }
