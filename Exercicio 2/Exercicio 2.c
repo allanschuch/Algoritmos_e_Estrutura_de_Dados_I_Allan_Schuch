@@ -2,36 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *pointer, *string;
+char *lerNome(){
 
-char *Ler_nome()
-{
-    char ch, *init, *p;
+    char ch, *inicio, *ponteiro;
     int i = 0;
 
-    init = (char *)malloc(sizeof(char) * 2);
-    p = init;
-    *init = getchar();
+    inicio = (char *)malloc(sizeof(char) * 2);
+    ponteiro = inicio;
 
-    while ((ch = getchar()) != '\n')
-    {
-        init = realloc(init, sizeof(char) * (i + 3));
-        p = init + (i + 1);                                                                                     
-        *p = ch;
+    *inicio = getchar();
+
+    while ((ch = getchar()) != '\n'){
+        inicio = realloc(inicio, sizeof(char) * (i + 3));
+        ponteiro = inicio + (i + 1);                                                                                     
+        *ponteiro = ch;
         i++;                                                             
     }
 
-    p = init + (i + 1);
-    *p = '\0';
+    ponteiro = inicio + (i + 1);
+    *ponteiro = '\0';
 
-    return init;
+    printf("Nome lido: %s\n", inicio);
+
+    return inicio;
 }
 
-void Grava_nome()
+void gravarNome(char *string)
 {
-    char *novo_nome, *p = string;
+    char *novo_nome, *ponteiro = string;
     
-    novo_nome = Ler_nome();
+    novo_nome = lerNome();
     int tam_nome = strlen(novo_nome) + 1;
 
     printf("Nome: %s\n", novo_nome);
@@ -39,12 +39,12 @@ void Grava_nome()
 
     string = realloc(string, (sizeof(char) * (tam_nome + strlen(string))));
 
-    memcpy(p, novo_nome, tam_nome);
+    memcpy(ponteiro, novo_nome, tam_nome);
     printf("Strlen string: %d\n", strlen(string));
     
-    p = p + tam_nome;
-    *p = '@';
-    *(p + 1) = '\0';
+    ponteiro = ponteiro + tam_nome;
+    *ponteiro = '@';
+    *(ponteiro + 1) = '\0';
     printf("Strlen string: %d\n", strlen(string));
     free(novo_nome);
     printf("Nome: %s\n", string);
@@ -52,16 +52,16 @@ void Grava_nome()
     return;
 }
 
-int main()
-{
-    string = (char *)malloc(sizeof(char));
-    *string = '\0';
+int main(){
 
-    Grava_nome();
-    Grava_nome();
-    Grava_nome();
+    char *stringNomes;
 
-    printf("Todos nomes: %s", string);
+    stringNomes = (char *)malloc(sizeof(char));
+    *stringNomes = '\0';
+    
+    // gravarNome(stringNomes);
 
-    free(string);
+    // printf("Todos nomes: %s", stringNomes);
+
+    free(stringNomes);
 }
