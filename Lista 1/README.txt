@@ -5,6 +5,8 @@ email: anschuch@inf.ufpel.edu.br
 
 Link para o repositório no GitHub: github.com/allanschuch/Algoritmos_e_Estrutura_de_Dados_I_Allan_Schuch
 
+--------------------------------------------------------------------
+
 Exercício 1: Fazer um projeto Olá Mundo em C no Visual Code e usar o debug com um breakpoint no printf
 
 Tarefa feita!
@@ -20,18 +22,47 @@ Exercício 2: Faça um programa que armazena nomes.
 
 Tarefa feita!
 
+Entradas DrMemory:
+
+1
+Ramiro
+1
+Gui
+1
+Julia
+3
+2
+Gui
+3
+2
+Ramiro
+3
+4
+
+---------------------------------------------------------------------
+
 Exercício 3: Tarefa não foi feita
+
+---------------------------------------------------------------------
 
 DIRETÓRIOS:
 
 Exercicio1.c está no diretório Exercicio1
 Exercicio2.c está no diretório Exercicio2
 
+---------------------------------------------------------------------
+
+COMPILAÇÃO
+
 Para compilar e executar os programas utilizar a forma manual padrão:
 
 $ gcc ExercicioX.c -o ExercicioX && ./ExercicioX
 
-OBS: O programa do exercício 2 está apresentando 2 erros e um pequeno leak de memória.
+---------------------------------------------------------------------
+
+OBSERVAÇÕES
+
+O programa do exercício 2 está apresentando 2 erros e um pequeno leak de memória.
 Os erros parecem estar nas funções "main" e "menu". Os leaks acredito estarem relacionados
 com a função de exclusão de nomes, na parte em que a string é realocada. Acabei não enviando
 o exercício 3 pois não dei conta de fazer, por causa do tempo mesmo. Subestimei o tempo que 
