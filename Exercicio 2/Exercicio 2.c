@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+int menu()
+{
+    int opcao;
+
+    while (opcao < 1 || opcao > 4)
+    {
+        printf("\n1- Adicionar nome\n2- Remover nome\n3- Listar\n4- Sair\n\nEscolha uma opcao: ");
+        scanf("%d", &opcao);
+        getchar();
+    }
+    return opcao;
+}
+
 char *lerNome(){
 
     char ch, *inicio, *ponteiro;
@@ -21,8 +34,6 @@ char *lerNome(){
 
     ponteiro = inicio + (i + 1);
     *ponteiro = '\0';
-
-    printf("\nNome lido: %s", inicio);
 
     return inicio;
 }
@@ -55,17 +66,13 @@ void listarNomes(char *string){
 
     char *token, *aux;
     const char caracDelim[2] = "-";
-    
 
     aux = (char *)malloc(sizeof(char) * strlen(string) + 1);
+
     strcpy(aux, string);
-
-    printf("String completa: %s", string);
-
-    printf("\nLISTA DE NOMES\n\n");
-
     token = strtok(aux, caracDelim);
 
+    printf("\nLISTA DE NOMES\n\n");
     while (token != NULL)
     {
         printf("%s\n", token);
@@ -75,41 +82,62 @@ void listarNomes(char *string){
     free(aux);
 }
 
-int menu()
-{
-    int opcao;
+char *excluirNome(char *stringNomes){
 
-    while (opcao < 1 || opcao > 4){
-        printf("\n1- Adicionar nome\n2- Remover nome\n3- Listar\n4- Sair\n\nEscolha uma opcao: ");
-        scanf("%d", &opcao);
-        getchar();
+    char *nome, *ponteiro;
+    int i, j, tamNome, tamString, check = 0;
+
+    printf("\nInforme o nome que deseja excluir: ");
+    nome = lerNome();
+    tamNome = strlen(nome);
+    tamString = strlen(stringNomes);
+
+    for (ponteiro = stringNomes, i = 0, j = 0; j < tamString; j++)
+    {
+        if(*ponteiro + i == *nome + i){
+            i++;
+        }else{
+            i = 0;
+            ponteiro++;
+        }
+        if(i == tamNome){
+            strcpy(ponteiro, ponteiro + tamNome + 1);
+            check = 1;
+            stringNomes = (char *)realloc(stringNomes, sizeof(char) * (tamString - tamNome));
+        }
     }
-    return opcao;
+
+    if(check == 0){
+        printf("\nNome nao encontrado.\n");
+    }
+
+    return stringNomes;
 }
 
 int main(){
 
     char *stringNomes;
-    int opcao;
+    int opcao = 0;
 
     stringNomes = (char *)malloc(sizeof(char));
     *stringNomes = '\0';
 
-    for ( ; ; ){
+    for (;;)
+    {
         opcao = menu();
 
         switch (opcao){
         case 1:
             stringNomes = gravarNome(stringNomes);
-            printf("\nTamanho string: %d\n", strlen(stringNomes));
             break;
         case 2:
-
+            stringNomes = excluirNome(stringNomes);
             break;
         case 3:
             listarNomes(stringNomes);
             break;
         case 4:
+            free(stringNomes);
             exit(0);
             break;
         default:
