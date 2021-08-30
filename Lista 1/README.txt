@@ -3,6 +3,8 @@ Curso: Ciência da Computação
 Matrícula: 20100470
 email: anschuch@inf.ufpel.edu.br
 
+Link para o repositório no GitHub: github.com/allanschuch/Algoritmos_e_Estrutura_de_Dados_I_Allan_Schuch
+
 Exercício 1: Fazer um projeto Olá Mundo em C no Visual Code e usar o debug com um breakpoint no printf
 
 Tarefa feita!
