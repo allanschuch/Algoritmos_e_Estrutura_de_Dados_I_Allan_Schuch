@@ -17,6 +17,9 @@ int menu()
 
 char *lerNome(){
 
+    // Esta função lê os nomes que o usuário digita e retorna um ponteiro 
+    //para o buffer, ajustando o tamanho do buffer a cada caractere inserido
+
     char ch, *inicio, *ponteiro;
     int i = 0;
 
@@ -39,6 +42,8 @@ char *lerNome(){
 }
 
 char *gravarNome(char *string){
+
+    // Grava na string principal o nome informado pela função lerNome
 
     char *novoNome, *ponteiro;
     int tamNome, i;
@@ -64,6 +69,8 @@ char *gravarNome(char *string){
 
 void listarNomes(char *string){
 
+    // Lista os nomes gravados na string
+
     char *token, *aux;
     const char caracDelim[2] = "-";
 
@@ -83,6 +90,8 @@ void listarNomes(char *string){
 }
 
 char *excluirNome(char *stringNomes){
+
+    //Exclui da string o nome informado pelo usuario
 
     char *nome, *ponteiro;
     int i, j, tamNome, tamString, check = 0;
